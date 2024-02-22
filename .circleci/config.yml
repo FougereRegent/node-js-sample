@@ -2,7 +2,7 @@ version: 2.1
 executors:
   my-custom-executor:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/go:1.17
         auth:
           # ensure you have first added these secrets
           # visit app.circleci.com/settings/project/github/FougereRegent/node-js-sample/environment-variables
@@ -13,8 +13,7 @@ jobs:
     executor: my-custom-executor
     steps:
       - checkout
-      - run: |
-          docker build -t fouegereregent39/miniapi .
+      - run: docker build -t fouegereregent39/miniapi .
 
 workflows:
   my-custom-workflow:
