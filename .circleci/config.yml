@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run: |
           docker build -t fouegereregent39/miniapi . |
-          echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin |
+          echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin |
           docker push fouegereregent39/miniapi
 
 workflows:
