@@ -1,7 +1,22 @@
-version: "2"
+version: 2.1
+executors:
+  my-custom-executor:
+    docker:
+      - image: cimg/base:stable
+        auth:
+          # ensure you have first added these secrets
+          # visit app.circleci.com/settings/project/github/FougereRegent/node-js-sample/environment-variables
+          username: $DOCKER_HUB_USER
+          password: $DOCKER_HUB_PASSWORD
 jobs:
-  build-image:
+  my-job-name:
+    executor: my-custom-executor
     steps:
-      - run:
-        name: Build Dockerfile and push it
-        command: docker build -t miniapi .
+      - checkout
+      - run: |
+          echo Hello World
+
+workflows:
+  my-custom-workflow:
+    jobs:
+      - my-job-name
