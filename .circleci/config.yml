@@ -1,0 +1,7 @@
+version: "2"
+jobs:
+  build-image:
+    steps:
+      - run:
+        name: Build Dockerfile and push it
+        command: docker build -t miniapi .
