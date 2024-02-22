@@ -13,4 +13,8 @@ jobs:
       # Build the hello world image
       - run:
           name: Build Docker image
-          command: docker build --tag miniapi .
+          command: | 
+                docker build --tag $DOCKER_HUB_USER/miniapi . |
+                echo "$DOCKER_HUB_PASSWORD" | docker login -u $DOCKER_HUB_USER --password-stdin |
+                docker push $DOCKER_HUB_USER/miniapi
+          
