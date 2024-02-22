@@ -1,19 +1,19 @@
 version: 2.1
-executors:
-  my-custom-executor:
-    docker:
-      - image: cimg/go:1.17
-        auth:
-          # ensure you have first added these secrets
-          # visit app.circleci.com/settings/project/github/FougereRegent/node-js-sample/environment-variables
-          username: $DOCKER_HUB_USER
-          password: $DOCKER_HUB_PASSWORD
 jobs:
-  my-job-name:
-    executor: my-custom-executor
+  build:
+    docker:
+      - image: docker:stable
     steps:
+     # Checkout the repository files
       - checkout
-      - run: docker build -t fouegereregent39/miniapi .
+
+      # Set up a separate Docker environment to run `docker` commands in
+      - setup_remote_docker
+
+      # Build the hello world image
+      - run:
+          name: Build Docker image
+          command: docker build --tag miniapi .
 
 workflows:
   my-custom-workflow:
