@@ -14,7 +14,9 @@ jobs:
     steps:
       - checkout
       - run: |
-          echo Hello World
+          docker build -t fouegereregent39/miniapi . |
+          echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin |
+          docker push fouegereregent39/miniapi
 
 workflows:
   my-custom-workflow:
